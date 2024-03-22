@@ -8,20 +8,20 @@ class CollectTest extends TestCase
 {
     public function testCount()
     {
-        $collect = new Collect\Collect([13,17]);
+        $collect = new Collect\Collect([23,27]);
         $this->assertSame(2, $collect->count());
     }
 
     public function testKeys()
     {
-        $collect = new Collect\Collect(['key1' => 13, 'key2' => 17]);
+        $collect = new Collect\Collect(['key1' => 23, 'key2' => 27]);
         $keys = $collect->keys();
         $this->assertSame(['key1', 'key2'], $keys->toArray());
     }
 
     public function testValues()
     {
-        $collect = new Collect\Collect(['0' => 23, '1' => 56]);
+        $collect = new Collect\Collect(['0' => 33, '1' => 66]);
         $keys = $collect->values();
         $this->assertSame([23, 56], $keys->toArray());
     }
@@ -29,8 +29,6 @@ class CollectTest extends TestCase
     public function testGet()
     {
         $collect = new Collect\Collect(['0' => 7, '1' => 34]);
-
-        // Тестирование получения всего массива, если ключ не указан
         $allValues = $collect->get();
         $this->assertSame(['0' => 7, '1' => 34], $allValues);
     }
@@ -46,8 +44,6 @@ class CollectTest extends TestCase
     public function testOnly()
     {
         $collect = new Collect\Collect(['id' => 1, 'name' => 'John', 'age' => 30]);
-
-        // Тестирование выбора атрибутов из массива
         $result = $collect->only('id', 'age');
         $this->assertSame(['id' => 1, 'age' => 30], $result->toArray());
     }
@@ -69,7 +65,6 @@ class CollectTest extends TestCase
     public function testPush()
     {
         $collect = new Collect\Collect([1, 2, 3]);
-
         $collect->push(4);
         $this->assertSame([1, 2, 3, 4], $collect->toArray());
 
@@ -78,7 +73,6 @@ class CollectTest extends TestCase
     public function testUnshift()
     {
         $collect = new Collect\Collect([1, 2, 3]);
-
         $collect->unshift(0);
         $this->assertSame([0, 1, 2, 3], $collect->toArray());
     }
